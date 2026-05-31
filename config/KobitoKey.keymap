@@ -35,20 +35,20 @@
 
     // =============================================
     // マクロ: BTプロファイル切り替え + レイヤー切り替えを同時に実行
-    // to_win → プロファイル0（Windows）+ layer5へ
-    // to_mac → プロファイル1（Mac）    + layer0へ
+    // to_win → プロファイル1（Windows）+ layer5へ
+    // to_mac → プロファイル0（Mac）    + layer0へ
     // =============================================
     macros {
         to_win: to_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0>, <&to 5>;
+            bindings = <&bt BT_SEL 1>, <&to 5>;
         };
 
         to_mac: to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1>, <&to 0>;
+            bindings = <&bt BT_SEL 0>, <&to 0>;
         };
     };
 
@@ -90,7 +90,7 @@
             >;
         };
 
-        // Layer 3: マウスレイヤー（変更なし）
+        // Layer 3: マウスレイヤー（手動用）
         // 注意: &to 0 は常にMacレイヤー(layer0)に戻ります
         layer3 {
             label = "MOUSE";
@@ -122,6 +122,18 @@
 &kp A      &kp S     &kp D      &kp F        &kp G      &kp H     &kp J        &kp K      &kp L      &kp SEMI
 &kp Z      &kp X     &kp C      &kp V        &kp B      &kp N     &kp M        &kp COMMA  &kp DOT    &kp APOS
 &kp LSHFT  &kp LALT  &kp LCTRL  &lt 2 SPACE  &kp LGUI   &kp BSPC  &lt 1 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
+            >;
+        };
+
+        // Layer 6: オートマウスレイヤー
+        // Windowsレイヤー(layer5)より上に置いて、Windows使用時も優先されるようにする
+        layer6 {
+            label = "AUTO_MOUSE";
+            bindings = <
+&trans     &trans  &trans    &trans    &trans  &trans  &mkp MB1  &mkp MB3  &mkp MB2  &trans
+&trans     &trans  &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
+&trans     &trans  &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
+&kp LSHFT  &trans  &kp LCMD  &kp LALT  &to 0   &trans  &trans    &trans    &to 0     &kp RALT
             >;
         };
     };
