@@ -33,9 +33,30 @@
         };
     };
 
+    // =============================================
+    // マクロ: BTプロファイル切り替え + レイヤー切り替えを同時に実行
+    // to_win → プロファイル0（Windows）+ layer5へ
+    // to_mac → プロファイル1（Mac）    + layer0へ
+    // =============================================
+    macros {
+        to_win: to_win {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>, <&df 5>;
+        };
+
+        to_mac: to_mac {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 1>, <&df 0>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
+        // Layer 0: Mac用 QWERTYレイヤー（デフォルト）
+        // 左下3番目: &kp LCMD（⌘コマンドキー）
         default_layer {
             bindings = <
 &kp Q      &kp W     &kp E     &kp R        &kp T      &kp Y     &kp U        &kp I      &kp O      &kp P
@@ -45,26 +66,32 @@
             >;
         };
 
+        // Layer 1: 数字・矢印レイヤー（変更なし）
         layer1 {
             label = "NUMBER";
             bindings = <
-&kp N0     &kp N1  &kp N2  &kp N3     &trans  &kp MINUS  &kp PLUS   &trans    &trans     &trans
+&kp N0     &kp N1  &kp N2  &kp N3     &trans  &kp MINUS  &kp PLUS   &trans    &kp TILDE  &kp UNDER
 &kp EQUAL  &kp N4  &kp N5  &kp N6     &trans  &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT  &trans
 &trans     &kp N7  &kp N8  &kp N9     &trans  &kp ASTRK  &kp SLASH  &kp LBKT  &kp RBKT   &trans
 &trans     &trans  &trans  &kp LSHFT  &trans  &trans     &trans     &trans    &trans     &trans
             >;
         };
 
+        // Layer 2: BT・ファンクションレイヤー
+        // Qキー → &to_win（Windows切り替え）
+        // Wキー → &to_mac（Mac切り替え）
         layer2 {
             label = "FUNCTION";
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp F1   &kp F2   &kp F3  &kp F4  &kp F5
-&trans        &trans        &trans        &trans        &bt BT_CLR      &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
-&trans        &trans        &trans        &trans        &bt BT_CLR_ALL  &kp F11  &kp F12  &trans  &trans  &trans
-&trans        &trans        &trans        &trans        &trans          &kp DEL  &trans   &trans  &trans  &trans
+&to_win  &to_mac  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp F1   &kp F2   &kp F3  &kp F4  &kp F5
+&trans   &trans   &trans        &trans        &bt BT_CLR      &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
+&trans   &trans   &trans        &trans        &bt BT_CLR_ALL  &kp F11  &kp F12  &trans  &trans  &trans
+&trans   &trans   &trans        &trans        &trans          &kp DEL  &trans   &trans  &trans  &trans
             >;
         };
 
+        // Layer 3: マウスレイヤー（変更なし）
+        // 注意: &to 0 は常にMacレイヤー(layer0)に戻ります
         layer3 {
             label = "MOUSE";
             bindings = <
@@ -72,6 +99,29 @@
 &trans     &trans  &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
 &trans     &trans  &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
 &kp LSHFT  &trans  &kp LCMD  &kp LALT  &to 0   &trans  &trans    &trans    &to 0     &kp RALT
+            >;
+        };
+
+        // Layer 4: 予備（空きレイヤー）
+        layer4 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        // Layer 5: Windows用 QWERTYレイヤー
+        // layer0との違い: 左下3番目が &kp LCTRL（Ctrlキー）
+        //                 左下5番目が &kp LGUI（Windowsキー）
+        layer5 {
+            label = "WINDOWS";
+            bindings = <
+&kp Q      &kp W     &kp E      &kp R        &kp T      &kp Y     &kp U        &kp I      &kp O      &kp P
+&kp A      &kp S     &kp D      &kp F        &kp G      &kp H     &kp J        &kp K      &kp L      &kp SEMI
+&kp Z      &kp X     &kp C      &kp V        &kp B      &kp N     &kp M        &kp COMMA  &kp DOT    &kp APOS
+&kp LSHFT  &kp LALT  &kp LCTRL  &lt 2 SPACE  &kp LGUI   &kp BSPC  &lt 1 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
             >;
         };
     };
