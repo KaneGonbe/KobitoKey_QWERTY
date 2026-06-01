@@ -121,7 +121,7 @@
 &kp Q      &kp W     &kp E      &kp R        &kp T      &kp Y     &kp U        &kp I      &kp O      &kp P
 &kp A      &kp S     &kp D      &kp F        &kp G      &kp H     &kp J        &kp K      &kp L      &kp SEMI
 &kp Z      &kp X     &kp C      &kp V        &kp B      &kp N     &kp M        &kp COMMA  &kp DOT    &kp APOS
-&kp LSHFT  &kp LALT  &kp LCTRL  &lt 2 SPACE  &kp LGUI   &kp BSPC  &lt 1 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
+&kp LSHFT  &kp LALT  &kp LCTRL  &lt 7 SPACE  &kp LGUI   &kp BSPC  &lt 1 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
             >;
         };
 
@@ -134,6 +134,18 @@
 &trans     &trans  &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
 &trans     &trans  &trans    &trans    &trans  &trans  &trans    &trans    &trans    &trans
 &kp LSHFT  &trans  &kp LCMD  &kp LALT  &to 0   &trans  &trans    &trans    &to 0     &kp RALT
+            >;
+        };
+
+        // Layer 7: Windows用 BT・ファンクションレイヤー
+        // Windowsレイヤー(layer5)より上に置いて、Windows使用時もMacへ戻れるようにする
+        layer7 {
+            label = "WIN_FUNCTION";
+            bindings = <
+&to_win  &to_mac  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp F1   &kp F2   &kp F3  &kp F4  &kp F5
+&trans   &trans   &trans        &trans        &bt BT_CLR      &kp F6   &kp F7   &kp F8  &kp F9  &kp F10
+&trans   &trans   &trans        &trans        &bt BT_CLR_ALL  &kp F11  &kp F12  &trans  &trans  &trans
+&trans   &trans   &trans        &trans        &trans          &kp DEL  &trans   &trans  &trans  &trans
             >;
         };
     };
