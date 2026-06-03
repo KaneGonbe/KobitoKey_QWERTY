@@ -43,13 +43,13 @@
         to_win: to_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1 &to 5>;
+            bindings = <&bt BT_SEL 1>, <&to 5>;
         };
 
         to_mac: to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0 &to 0>;
+            bindings = <&bt BT_SEL 0>, <&to 0>;
         };
     };
 
