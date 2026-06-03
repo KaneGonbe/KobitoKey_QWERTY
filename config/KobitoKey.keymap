@@ -38,17 +38,18 @@
     // to_win → プロファイル1（Windows）+ layer5へ
     // to_mac → プロファイル0（Mac）    + layer0へ
     // =============================================
+
     macros {
         to_win: to_win {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 1>, <&to 5>;
+            bindings = <&bt BT_SEL 1 &to 5>;
         };
 
         to_mac: to_mac {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&bt BT_SEL 0>, <&to 0>;
+            bindings = <&bt BT_SEL 0 &to 0>;
         };
     };
 
@@ -57,6 +58,7 @@
 
         // Layer 0: Mac用 QWERTYレイヤー（デフォルト）
         // 左下3番目: &kp LCMD（⌘コマンドキー）
+
         default_layer {
             bindings = <
 &kp Q      &kp W     &kp E     &kp R        &kp T      &kp Y     &kp U        &kp I      &kp O      &kp P
@@ -67,19 +69,21 @@
         };
 
         // Layer 1: 数字・矢印レイヤー（変更なし）
+
         layer1 {
             label = "NUMBER";
             bindings = <
-&kp N0     &kp N1  &kp N2  &kp N3     &trans  &kp MINUS  &kp PLUS   &trans    &kp TILDE  &kp UNDER
-&kp EQUAL  &kp N4  &kp N5  &kp N6     &trans  &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT  &trans
-&trans     &kp N7  &kp N8  &kp N9     &trans  &kp ASTRK  &kp SLASH  &kp LBKT  &kp RBKT   &trans
-&trans     &trans  &trans  &kp LSHFT  &trans  &trans     &trans     &trans    &trans     &trans
+&kp N0     &kp N1  &kp N2  &kp N3     &kp TAB  &kp MINUS  &kp PLUS   &trans    &kp TILDE  &kp UNDER
+&kp EQUAL  &kp N4  &kp N5  &kp N6     &trans   &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT  &trans
+&trans     &kp N7  &kp N8  &kp N9     &trans   &kp ASTRK  &kp SLASH  &kp LBKT  &kp RBKT   &trans
+&trans     &trans  &trans  &kp LSHFT  &trans   &trans     &trans     &trans    &trans     &trans
             >;
         };
 
         // Layer 2: BT・ファンクションレイヤー
         // Qキー → &to_win（Windows切り替え）
         // Wキー → &to_mac（Mac切り替え）
+
         layer2 {
             label = "FUNCTION";
             bindings = <
@@ -92,6 +96,7 @@
 
         // Layer 3: マウスレイヤー（手動用）
         // 注意: &to 0 は常にMacレイヤー(layer0)に戻ります
+
         layer3 {
             label = "MOUSE";
             bindings = <
@@ -103,6 +108,7 @@
         };
 
         // Layer 4: 予備（空きレイヤー）
+
         layer4 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -115,18 +121,20 @@
         // Layer 5: Windows用 QWERTYレイヤー
         // layer0との違い: 左下3番目が &kp LCTRL（Ctrlキー）
         //                 左下5番目が &kp LGUI（Windowsキー）
+
         layer5 {
             label = "WINDOWS";
             bindings = <
-&kp Q      &kp W     &kp E      &kp R        &kp T      &kp Y     &kp U        &kp I      &kp O      &kp P
-&kp A      &kp S     &kp D      &kp F        &kp G      &kp H     &kp J        &kp K      &kp L      &kp SEMI
-&kp Z      &kp X     &kp C      &kp V        &kp B      &kp N     &kp M        &kp COMMA  &kp DOT    &kp APOS
-&kp LSHFT  &kp LALT  &kp LCTRL  &lt 7 SPACE  &kp LGUI   &kp BSPC  &lt 1 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
+&kp Q      &kp W     &kp E      &kp R        &kp T     &kp Y     &kp U        &kp I      &kp O      &kp P
+&kp A      &kp S     &kp D      &kp F        &kp G     &kp H     &kp J        &kp K      &kp L      &kp SEMI
+&kp Z      &kp X     &kp C      &kp V        &kp B     &kp N     &kp M        &kp COMMA  &kp DOT    &kp APOS
+&kp LSHFT  &kp LALT  &kp LCTRL  &lt 7 SPACE  &kp LGUI  &kp BSPC  &lt 1 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
             >;
         };
 
         // Layer 6: オートマウスレイヤー
         // Windowsレイヤー(layer5)より上に置いて、Windows使用時も優先されるようにする
+
         layer6 {
             label = "AUTO_MOUSE";
             bindings = <
@@ -139,6 +147,7 @@
 
         // Layer 7: Windows用 BT・ファンクションレイヤー
         // Windowsレイヤー(layer5)より上に置いて、Windows使用時もMacへ戻れるようにする
+
         layer7 {
             label = "WIN_FUNCTION";
             bindings = <
