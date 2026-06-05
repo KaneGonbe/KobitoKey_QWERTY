@@ -119,8 +119,9 @@
         };
 
         // Layer 5: Windows用 QWERTYレイヤー
-        // layer0との違い: 左下3番目が &kp LCTRL（Ctrlキー）
-        //                 左下5番目が &kp LGUI（Windowsキー）
+        // layer0との違い: 左下3番目が &kp LCMD（Command/Windowsキー）
+        //                 左下5番目が &kp LCTRL（Ctrlキー）
+        //                 右手Shift位置のひとつが &kp DEL（Deleteキー）
 
         layer5 {
             label = "WINDOWS";
@@ -128,7 +129,7 @@
 &kp Q      &kp W     &kp E      &kp R        &kp T     &kp Y     &kp U        &kp I      &kp O      &kp P
 &kp A      &kp S     &kp D      &kp F        &kp G     &kp H     &kp J        &kp K      &kp L      &kp SEMI
 &kp Z      &kp X     &kp C      &kp V        &kp B     &kp N     &kp M        &kp COMMA  &kp DOT    &kp APOS
-&kp LSHFT  &kp LALT  &kp LCTRL  &lt 7 SPACE  &kp LGUI  &kp BSPC  &lt 8 ENTER  &kp RSHFT  &kp RSHFT  &mt LALT SLASH
+&kp LSHFT  &kp LALT  &kp LCMD   &lt 7 SPACE  &kp LCTRL  &kp BSPC  &lt 8 ENTER  &kp DEL    &kp RSHFT  &mt LALT SLASH
             >;
         };
 
