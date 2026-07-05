@@ -54,6 +54,11 @@
             bindings = <&kp SINGLE_QUOTE>;
             key-positions = <16 17>;
         };
+
+        pipe {
+            bindings = <&kp BACKSLASH>;
+            key-positions = <3 4>;
+        };
     };
 
     // =============================================
